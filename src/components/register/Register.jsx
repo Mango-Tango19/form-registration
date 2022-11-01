@@ -5,6 +5,7 @@ import {
 	faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Register.scss";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -49,7 +50,7 @@ const Register = () => {
 		<section>
 			<p
 				ref={errRef}
-				className={errMsg ? "form_error" : "offscreen"}
+				className={errMsg ? "auth-form-error" : "offscreen"}
 				aria-live='assertive'
 			>
 				{errMsg}
