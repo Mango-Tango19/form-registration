@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+//import axios from "axios";
 import {
 	faCheck,
 	faTimes,
@@ -49,8 +50,41 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log(user, pwd);
-		setSuccess(true);
+		try {
+			const res = fetch("http://localhost:3500/register", {
+				method: "POST",
+
+				cache: "no-cache",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				redirect: "follow",
+				credentials: "include",
+				referrerPolicy: "no-referrer",
+				body: JSON.stringify({
+					user,
+					pwd,
+				}),
+			});
+
+			if (res.ok) {
+				console.log(JSON.stringify(res));
+				console.log(res.data);
+				console.log(res.accessToken);
+
+				setSuccess(true);
+				setUser("");
+				setPwd("");
+				setMatchPwd("");
+			} else {
+				console.log(JSON.stringify(res));
+				setErrMsg("No Server Response") + res?.statusText;
+
+				errRef.current.focus();
+			}
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	return (
 		<>
@@ -65,7 +99,7 @@ const Register = () => {
 				<section>
 					<p
 						ref={errRef}
-						className={errMsg ? "auth-form-error" : "offscreen"}
+						className={errMsg ? "form-error" : "offscreen"}
 						aria-live='assertive'
 					>
 						{errMsg}
