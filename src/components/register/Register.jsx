@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-//import axios from "axios";
+import axios from "axios";
+//import axios from "redaxios";
 import {
 	faCheck,
 	faTimes,
@@ -51,39 +52,30 @@ const Register = () => {
 		e.preventDefault();
 
 		try {
-			const res = fetch("http://localhost:3500/register", {
-				method: "POST",
-
-				cache: "no-cache",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				redirect: "follow",
-				credentials: "include",
-				referrerPolicy: "no-referrer",
-				body: JSON.stringify({
-					user,
-					pwd,
-				}),
-			});
-
-			if (res.ok) {
-				console.log(JSON.stringify(res));
-				console.log(res.data);
-				console.log(res.accessToken);
-
-				setSuccess(true);
-				setUser("");
-				setPwd("");
-				setMatchPwd("");
-			} else {
-				console.log(JSON.stringify(res));
-				setErrMsg("No Server Response") + res?.statusText;
-
-				errRef.current.focus();
-			}
+			const response = await axios.post(
+				"http://localhost:3500/register",
+				JSON.stringify({ user, pwd }),
+				{
+					headers: { "Content-Type": "application/json" },
+					withCredentials: true,
+				}
+			);
+			console.log(response?.data);
+			console.log(response?.accessToken);
+			console.log(JSON.stringify(response));
+			setSuccess(true);
+			setUser("");
+			setPwd("");
+			setMatchPwd("");
 		} catch (err) {
-			console.log(err);
+			if (!err?.response) {
+				setErrMsg("No Server Response");
+			} else if (err.response?.status === 409) {
+				setErrMsg("Username Taken");
+			} else {
+				setErrMsg("Registration Failed");
+			}
+			errRef.current.focus();
 		}
 	};
 	return (
