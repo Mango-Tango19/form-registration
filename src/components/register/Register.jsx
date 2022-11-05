@@ -97,10 +97,7 @@ const Register = () => {
 					</p>
 					<h1>Register</h1>
 					<form className='auth-form' onSubmit={handleSubmit}>
-						<label
-							className='auth-form__user-label'
-							htmlFor='username'
-						>
+						<label htmlFor='username'>
 							User name:
 							<FontAwesomeIcon
 								icon={faCheck}
@@ -115,7 +112,6 @@ const Register = () => {
 						</label>
 
 						<input
-							className='auth-form__user-name'
 							id='username'
 							ref={userRef}
 							onChange={(e) => setUser(e.target.value)}
@@ -131,7 +127,7 @@ const Register = () => {
 							id='uidnote'
 							className={
 								userFocus && user && !validName
-									? "auth-form__user-instructions"
+									? "auth-form__instructions name"
 									: "offscreen"
 							}
 						>
@@ -159,7 +155,6 @@ const Register = () => {
 							/>
 						</label>
 						<input
-							className='auth-form__user-password'
 							id='password'
 							onChange={(e) => setPwd(e.target.value)}
 							type='password'
@@ -173,7 +168,7 @@ const Register = () => {
 							id='pwdnote'
 							className={
 								pwdFocus && !validPwd
-									? "auth-form__password-instructions"
+									? "auth-form__instructions password"
 									: "offscreen"
 							}
 						>
@@ -220,7 +215,7 @@ const Register = () => {
 							id='confirmnote'
 							className={
 								matchFocus && !validMatch
-									? "instructions"
+									? "auth-form__instructions match-password"
 									: "offscreen"
 							}
 						>
