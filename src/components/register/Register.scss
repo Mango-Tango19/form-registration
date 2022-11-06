@@ -45,7 +45,8 @@ button {
     background-color: #ccff66;
 }
 
-button:hover {
+button:hover:enabled {
+    cursor: pointer;
     color: white;
     box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
     background-color: rgb(69, 44, 228);

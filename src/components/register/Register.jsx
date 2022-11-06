@@ -167,7 +167,7 @@ const Register = () => {
 						<p
 							id='pwdnote'
 							className={
-								pwdFocus && !validPwd
+								pwdFocus && pwd && !validPwd
 									? "auth-form__instructions password"
 									: "offscreen"
 							}
