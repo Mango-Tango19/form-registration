@@ -5,7 +5,7 @@ const userAdapter = createEntityAdapter({});
 
 const initialState = userAdapter.getInitialState();
 
-export const userApiSlice = apiSlice.enhanceEndpoints({
+export const userApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getUsers: builder.query({
 			query: () => "/users",
