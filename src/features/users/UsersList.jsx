@@ -9,7 +9,34 @@ const UsersList = () => {
 		isSuccess,
 		error,
 	} = useGetUsersQuery();
-	return <h1>UsersList</h1>;
+
+	let content;
+
+	if (isLoading) content = <h1>Loading...</h1>;
+
+	if (isError) content = <p>{error?.data?.message}</p>;
+	if (isSuccess) {
+		const { ids } = users;
+
+		const tableContent = ids.length
+			? ids.map((id) => <User key={id} userId={id} />)
+			: null;
+
+		content = (
+			<table>
+				<thead>
+					<tr>
+						<th>User name</th>
+						<th>Riles</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>{tableContent}</tbody>
+			</table>
+		);
+	}
+
+	return content;
 };
 
 export default UsersList;
