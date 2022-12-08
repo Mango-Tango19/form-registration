@@ -9,12 +9,12 @@ const User = ({ userId }) => {
 	const navigate = useNavigate();
 
 	if (user) {
-		const handleEdit = navigate(`/dash/users/${userId}`);
+		const handleEdit = () => navigate(`/dash/users/${userId}`);
 		const userRoleString = user.roles.toString().replace(",", ", ");
 		const cellStatus = user.active ? "" : "table__cell--inactive";
 		return (
 			<tr>
-				<td>{user.name}</td>
+				<td>{user.username}</td>
 				<td>{userRoleString}</td>
 				<td className={`${cellStatus}`}>
 					<button onClick={handleEdit}>edit</button>

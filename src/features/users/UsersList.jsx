@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetUsersQuery } from "./UserApiSlice";
+import User from "./User";
 
 const UsersList = () => {
 	const {
@@ -27,7 +28,7 @@ const UsersList = () => {
 				<thead>
 					<tr>
 						<th>User name</th>
-						<th>Riles</th>
+						<th>Roles</th>
 						<th>Edit</th>
 					</tr>
 				</thead>

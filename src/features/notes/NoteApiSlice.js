@@ -18,7 +18,7 @@ export const noteApiSlice = apiSlice.injectEndpoints({
 					return { ...item, id: item._id };
 				});
 
-				noteAdapter.setAll(initialState, loadednotes);
+				return noteAdapter.setAll(initialState, loadednotes);
 			},
 			providesTags: (result, err, arg) => {
 				if (!result?.ids) {
