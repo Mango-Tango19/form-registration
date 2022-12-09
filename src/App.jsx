@@ -8,6 +8,10 @@ import UsersList from "./features/users/UsersList";
 import NotesList from "./features/notes/NotesList";
 import "./App.css";
 import Login from "./features/auth/Login";
+import EditUser from "./features/users/EditUser";
+import NewUserForm from "./features/users/NewUserForm";
+import EditNote from "./features/notes/EditNote";
+import NewNote from "./features/notes/NewNote";
 function App() {
 	return (
 		<Routes>
@@ -19,10 +23,14 @@ function App() {
 
 					<Route path='users'>
 						<Route index element={<UsersList />} />
+						<Route path=':id' element={<EditUser />} />
+						<Route path='new' element={<NewUserForm />} />
 					</Route>
 
 					<Route path='notes'>
 						<Route index element={<NotesList />} />
+						<Route path=':id' element={<EditNote />} />
+						<Route path='new' element={<NewNote />} />
 					</Route>
 				</Route>{" "}
 				{/*End dash route*/}
