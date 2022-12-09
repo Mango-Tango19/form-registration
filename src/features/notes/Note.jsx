@@ -19,6 +19,11 @@ const Note = ({ noteId }) => {
 
 		return (
 			<tr>
+				<td>{note.username}</td>
+
+				<td>{created}</td>
+				<td>{updated}</td>
+				<td>{note.title}</td>
 				<td>
 					{note.conpleted ? (
 						<span>Completed</span>
@@ -26,10 +31,7 @@ const Note = ({ noteId }) => {
 						<span>Open</span>
 					)}
 				</td>
-				<td>{created}</td>
-				<td>{updated}</td>
-				<td>{note.title}</td>
-				<td>{note.username}</td>
+
 				<td>
 					<button onClick={handleEdit}>edit</button>
 				</td>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetNotesQuery } from "./NoteApiSlice";
+import Note from "./Note";
 
 const NotesList = () => {
 	const {
@@ -36,6 +37,7 @@ const NotesList = () => {
 			</table>
 		);
 	}
+	return content;
 };
 
 export default NotesList;
