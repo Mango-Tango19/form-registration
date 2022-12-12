@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAddNewNoteMutation } from "../notes/NoteApiSlice";
+import { useAddNewUserMutation } from "../users/UserApiSlice";
 import { useNavigate } from "react-router-dom";
 import { ROLES } from "../../config/roles";
 
@@ -8,7 +8,7 @@ const PWD_REGEX = /^[A-0z-9!@#$%]{4,12}$/;
 
 const NewUserForm = () => {
 	const [addNewUser, { isLoading, isError, isSuccess, error }] =
-		useAddNewNoteMutation();
+		useAddNewUserMutation();
 
 	const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const NewUserForm = () => {
 
 	const onSaveUsersClick = async (e) => {
 		e.preventDefault();
-		addNewUser({ username, password, roles });
+		await addNewUser({ username, password, roles });
 	};
 
 	const options = Object.values(ROLES).map((role) => {
