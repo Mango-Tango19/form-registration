@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { ROLES } from "../../config/roles";
 
 const USER_REGEX = /^[A-z]{3,20}$/;
-const PWD_REGEX = /^[A-0z-9!@#$%]{4,12}$/;
+const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 
 const EditUserForm = ({ user }) => {
 	const navigate = useNavigate();
@@ -66,8 +66,7 @@ const EditUserForm = ({ user }) => {
 
 	const onActiveChange = () => setActive((prev) => !prev);
 
-	const onEditUsersClick = async (e) => {
-		e.preventDefault();
+	const onSaveUserClicked = async (e) => {
 		if (password) {
 			await updateUser({
 				id: user.id,
@@ -95,6 +94,15 @@ const EditUserForm = ({ user }) => {
 		canSave = [roles.length, validUsername].every(Boolean) && !isLoading;
 	}
 
+	const options = Object.values(ROLES).map((role) => {
+		return (
+			<option key={role} value={role}>
+				{" "}
+				{role}
+			</option>
+		);
+	});
+
 	const errClass = isError ? "errmsg" : "offscreen";
 	const validUserClass = !validUsername ? "form__input--incomplite" : "";
 	const validPwdClass = !validPassword ? "form__input--incomplite" : "";
@@ -117,14 +125,14 @@ const EditUserForm = ({ user }) => {
 							onClick={onSaveUserClicked}
 							disabled={!canSave}
 						>
-							<FontAwesomeIcon icon={faSave} />
+							{/* <FontAwesomeIcon icon={faSave} /> */}
 						</button>
 						<button
 							className='icon-button'
 							title='Delete'
 							onClick={onDeleteUsersClick}
 						>
-							<FontAwesomeIcon icon={faTrashCan} />
+							{/* <FontAwesomeIcon icon={faTrashCan} /> */}
 						</button>
 					</div>
 				</div>
