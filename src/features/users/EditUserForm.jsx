@@ -125,6 +125,8 @@ const EditUserForm = ({ user }) => {
 							onClick={onSaveUserClicked}
 							disabled={!canSave}
 						>
+							{" "}
+							Save
 							{/* <FontAwesomeIcon icon={faSave} /> */}
 						</button>
 						<button
@@ -132,6 +134,8 @@ const EditUserForm = ({ user }) => {
 							title='Delete'
 							onClick={onDeleteUsersClick}
 						>
+							{" "}
+							Delete
 							{/* <FontAwesomeIcon icon={faTrashCan} /> */}
 						</button>
 					</div>

@@ -12,10 +12,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
 			validateStatus: (response, result) => {
 				return response.status === 200 && !result.isError;
 			},
-			keepUnusedDataFor: 5,
+
 			transformResponse: (response) => {
 				const loadedUsers = response.map((item) => {
-					return { ...item, id: item._id };
+					item.id = item._id;
+					return item;
 				});
 
 				return userAdapter.setAll(initialState, loadedUsers);

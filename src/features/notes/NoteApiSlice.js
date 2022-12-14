@@ -12,10 +12,11 @@ export const noteApiSlice = apiSlice.injectEndpoints({
 			validateStatus: (response, result) => {
 				return response.status === 200 && !result.isError;
 			},
-			keepUnusedDataFor: 5,
+
 			transformResponse: (response) => {
 				const loadednotes = response.map((item) => {
-					return { ...item, id: item._id };
+					item.id = item._id;
+					return item;
 				});
 
 				return noteAdapter.setAll(initialState, loadednotes);
