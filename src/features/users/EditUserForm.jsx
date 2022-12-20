@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-	useDeleteUserMutation,
-	useUpdateUserMutation,
-} from "../users/UserApiSlice";
+import { useDeleteUserMutation, useUpdateUserMutation } from "./UserApiSlice";
 import { useNavigate } from "react-router-dom";
 import { ROLES } from "../../config/roles";
 
@@ -82,7 +79,7 @@ const EditUserForm = ({ user }) => {
 
 	const onDeleteUsersClick = async (e) => {
 		e.preventDefault();
-		await deleteUser(user.id);
+		await deleteUser({ id: user.id });
 	};
 
 	let canSave;
