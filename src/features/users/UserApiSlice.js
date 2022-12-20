@@ -33,10 +33,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
 			},
 		}),
 		addNewUser: builder.mutation({
-			query: (initialData) => ({
-				query: "/users",
+			query: (initialUserData) => ({
+				url: "/users",
 				method: "POST",
-				body: { ...initialData },
+				body: {
+					...initialUserData,
+				},
 			}),
 			invalidatesTags: [{ type: "User", id: "LIST" }],
 		}),

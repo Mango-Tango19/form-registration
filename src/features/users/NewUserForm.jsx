@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAddNewUserMutation } from "../users/UserApiSlice";
+import { useAddNewUserMutation } from "./UserApiSlice";
 import { useNavigate } from "react-router-dom";
 import { ROLES } from "../../config/roles";
 
@@ -53,7 +53,9 @@ const NewUserForm = () => {
 
 	const onSaveUsersClick = async (e) => {
 		e.preventDefault();
-		await addNewUser({ username, password, roles });
+		if (canSave) {
+			await addNewUser({ username, password, roles });
+		}
 	};
 
 	const options = Object.values(ROLES).map((role) => {
