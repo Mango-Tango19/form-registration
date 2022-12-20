@@ -11,6 +11,7 @@ const Prefetch = () => {
 		const users = store.dispatch(
 			userApiSlice.endpoints.getUsers.initiate()
 		);
+		console.log("🚀 ~ file: Prefetch.jsx:14 ~ useEffect ~ users", users);
 		const notes = store.dispatch(
 			noteApiSlice.endpoints.getNotes.initiate()
 		);
